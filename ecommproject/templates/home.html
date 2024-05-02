@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if category %}
+<div>
+    <div>
+        <p class="text-center"><a href="{% url 'home' %}">our categories</a></p>
+    </div>
+</div>
+{% endif %}
+{% if category %}
+<div>
+<img src="{{category.image.url}}"style="width:500px;height:400px;">
+</div>
+
+<br>
+<div>
+    <h1>{{category.name}}</h1>
+    <p>{{category.description}}</p>
+</div>
+{% else %}
+<div>
+    <img src="{% static 'images/store.jpg' %}">
+</div>
+<h1 style="text-align:center; color:blue;">Explore our product collections</h1>
+<p1>Instead of going to the local malls for a shopping spree, more and more people are using the variety of online resources to discover the right products for them. From giants like Amazon to small Etsy stores, online shopping is the future of consumerism! If you’re also interested in taking the plunge into the e-commerce world, then an online store would be just the thing. But what if you’re not sure how best to market your products online? In this case, an online store description generator would be a helpful tool. </p1>
+ <div>
+     {% endif %}
+
+ <div class="container">
+     <div class="row">
+     {% for product in products %}
+
+         <div class="col-9 col-sm-12 col-md-3">
+     <div class="card" style="width: 18rem;">
+         <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="width:200px;height:200px;"></a>
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">{{product.price}}</p>
+    <a href="#" class="btn btn-primary">Add to cart</a>
+  </div>
+</div>
+         </div>
+
+     {% endfor %}
+
+ </div>
+ </div>
+
+     {% endblock %}
